@@ -12,17 +12,13 @@ public class Cell {
     int y = 0;
     int xSize = 0;
     int ySize = 0;
-
-    Integer number = 0;
-
     Integer value = 0;
 
-    public Cell(int x, int y, int xSize, int ySize, int number, int value) {
+    public Cell(int x, int y, int xSize, int ySize, int value) {
         this.x = x;
         this.y = y;
         this.xSize = xSize;
         this.ySize = ySize;
-        this.number = number;
         this.value = value;
     }
 
@@ -32,7 +28,7 @@ public class Cell {
         gr2d.setPaint(Color.yellow);
         gr2d.drawString(value.toString(), x + (xSize / 2), y + (ySize / 2));
 
-        if(gr2d != null) {
+        if (gr2d != null) {
             gr2d.setPaint(Color.white);
             gr2d.drawRect(x, y, xSize, ySize);
         }

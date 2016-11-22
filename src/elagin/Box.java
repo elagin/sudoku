@@ -28,7 +28,7 @@ public class Box {
     int xCellSize = 0;
     int yCellSize = 0;
 
-    public Box(int x, int y, int xSize, int ySize, int number, Tank tank) {
+    public Box(int x, int y, int xSize, int ySize, int xBox, int yBox, Tank tank) {
         matrixA = new int[3][3];
 
         cells = new Cell[xCells][yCells];
@@ -36,19 +36,17 @@ public class Box {
         this.y = y;
         this.xSize = xSize;
         this.ySize = ySize;
-        this.number = number;
 
         xCellSize = xSize / xCells;
         yCellSize = ySize / yCells;
-
-        int cnt = 0;
 
         xEdge = x;
         yEdge = y;
 
         for (int j = 0; j < yCells; j++) {
             for (int i = 0; i < xCells; i++) {
-                cells[i][j] = new Cell(xEdge, yEdge, xCellSize, yCellSize, cnt++, tank.getValue(i,j));
+//                System.out.printf("[%d]x[%d] -", i, j);
+                cells[i][j] = new Cell(xEdge, yEdge, xCellSize, yCellSize, tank.getValue(i + xBox * 3, j + yBox * 3));
                 xEdge = xEdge + xCellSize;
             }
             yEdge = yEdge + yCellSize;
@@ -62,7 +60,7 @@ public class Box {
 //        gr2d.setPaint(Color.green);
 //        gr2d.drawString(number.toString(), x + (xSize / 2), y + (ySize / 2));
 
-        if(gr2d != null) {
+        if (gr2d != null) {
             gr2d.setPaint(Color.green);
             gr2d.drawRect(x, y, xSize, ySize);
         }

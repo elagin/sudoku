@@ -3,6 +3,7 @@ package elagin;
 /**
  * Created by elagin on 08.06.15.
  */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,7 +20,7 @@ public class Tank {
         int dryRest = 9;
 
         public FreeLine() {
-            for(int i = 1; i <= valuesSize; i++ ) {
+            for (int i = 1; i <= valuesSize; i++) {
                 line.add(i);
             }
         }
@@ -28,11 +29,21 @@ public class Tank {
             line.remove(value);
         }
 
+//        public int getValue() {
+//            int index = rand.nextInt(dryRest);
+//            dryRest--;
+//            System.out.print(index + " - ");
+//            return index;
+//        }
+
         public int getValue() {
             int index = rand.nextInt(dryRest);
             dryRest--;
-            System.out.print(index + " - ");
-            return index;
+            int res = line.get(index);
+            line.remove(index);
+            //System.out.printf("res: [%d], index: [%d], dryRest: [%d]\n", res, index, dryRest);
+            System.out.printf("[%d] -", res);
+            return res;
         }
     }
 
@@ -48,9 +59,9 @@ public class Tank {
 
     public Tank() {
 //        resetLine();
-        for(int j = 0; j < valuesSize; j++ ) {
+        for (int j = 0; j < valuesSize; j++) {
             line = new FreeLine();
-            for(int i = 0; i < valuesSize; i++) {
+            for (int i = 0; i < valuesSize; i++) {
                 //prepareLine(i);
                 int newValue = line.getValue();
                 res[i][j] = newValue;
@@ -71,7 +82,7 @@ public class Tank {
     }
 
     protected void prepareLine(int colunm) {
-        for(int j = 0; j < valuesSize; j++ ) {
+        for (int j = 0; j < valuesSize; j++) {
             line.clean(res[j][colunm]);
         }
     }
@@ -106,7 +117,7 @@ public class Tank {
 //    }
 
     private void clearColunm(int num) {
-        for(int j = 0; j < valuesSize; j++ ) {
+        for (int j = 0; j < valuesSize; j++) {
             int value = res[num][j];
             line.clean(value);
         }

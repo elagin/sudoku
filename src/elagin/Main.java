@@ -2,9 +2,8 @@ package elagin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
-public class Main  extends JFrame {
+public class Main extends JFrame {
 
     final int xSize = 302;
     final int ySize = 302;
@@ -45,7 +44,7 @@ public class Main  extends JFrame {
 
         for (int j = 0; j < yBoxes; j++) {
             for (int i = 0; i < xBoxes; i++) {
-                boxes[i][j] = new Box(xEdge, yEdge, xBoxSize, yBoxSize, cnt++, tank);
+                boxes[i][j] = new Box(xEdge, yEdge, xBoxSize, yBoxSize, i, j, tank);
                 xEdge = xEdge + xBoxSize;
             }
             yEdge = yEdge + yBoxSize;
@@ -62,7 +61,7 @@ public class Main  extends JFrame {
     }
 
     private void generator() {
-        for(int i = 0; i < valuesSize; i++) {
+        for (int i = 0; i < valuesSize; i++) {
             //int newValue = tank.getValue();
             //System.out.println(newValue);
         }
@@ -143,7 +142,6 @@ public class Main  extends JFrame {
         //clearRect очищает указанную область(координаты левого верхнего                      //угла прямоугольника;
         //width — ширина прямоугольника;
         //height — высота прямоугольника, вырезанная область зеленого цвета                 // фона
-
 
 
 //        gr2d.clearRect(0, 0, xSize, ySize);
