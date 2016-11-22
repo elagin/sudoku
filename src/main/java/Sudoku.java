@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Sudoku extends JFrame {
 
@@ -18,6 +20,7 @@ public class Sudoku extends JFrame {
     final int valuesSize = 9;
     int values[][] = new int[valuesSize][valuesSize];
 
+    private JTextField textField;
 
     public static void main(String[] args) {
         Sudoku app = new Sudoku();
@@ -25,6 +28,8 @@ public class Sudoku extends JFrame {
 
     public Sudoku() {
         super("simpleApp");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //createGUI();
         setSize(xSize, ySize + yShift);
         setVisible(true);
         int xEdgeStart = 1;
@@ -67,6 +72,7 @@ public class Sudoku extends JFrame {
 
     @Override
     public void paint(Graphics g) {
+        super.paint(g);
         Graphics2D gr2d = (Graphics2D) g;
         gr2d.setBackground(Color.gray);
         gr2d.clearRect(0, 0, xSize, ySize + yShift);
@@ -160,5 +166,32 @@ public class Sudoku extends JFrame {
         j.addPoint(240, 590);
         j.addPoint(270, 539);
         g.drawPolygon(j);
+    }
+
+    public void createGUI() {
+        //https://docs.oracle.com/javase/tutorial/uiswing/components/panel.html
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        //panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+
+        JButton button1 = new JButton("Button 1");
+        button1.setActionCommand("Button 1 was pressed!");
+        panel.add(button1);
+
+        textField = new JTextField();
+        textField.setColumns(23);
+        panel.add(textField);
+
+        ActionListener actionListener = new TestActionListener();
+        button1.addActionListener(actionListener);
+
+        getContentPane().add(panel);
+        //setPreferredSize(new Dimension(320, 300));
+    }
+
+    public class TestActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            textField.setText(e.getActionCommand());
+        }
     }
 }
