@@ -1,5 +1,3 @@
-package elagin;
-
 /**
  * Created by elagin on 08.06.15.
  */

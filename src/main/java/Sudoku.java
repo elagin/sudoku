@@ -1,9 +1,7 @@
-package elagin;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class Main extends JFrame {
+public class Sudoku extends JFrame {
 
     final int xSize = 302;
     final int ySize = 302;
@@ -22,10 +20,10 @@ public class Main extends JFrame {
 
 
     public static void main(String[] args) {
-        Main app = new Main();
+        Sudoku app = new Sudoku();
     }
 
-    public Main() {
+    public Sudoku() {
         super("simpleApp");
         setSize(xSize, ySize + yShift);
         setVisible(true);
