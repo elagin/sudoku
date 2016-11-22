@@ -33,7 +33,7 @@ public class Cell {
         gr2d.drawString(value.toString(), x + (xSize / 2), y + (ySize / 2));
 
         if(gr2d != null) {
-            gr2d.setPaint(Color.pink);
+            gr2d.setPaint(Color.white);
             gr2d.drawRect(x, y, xSize, ySize);
         }
     }
