@@ -15,11 +15,6 @@ public class Sudoku extends JFrame {
 
     Box[][] boxes = null;
 
-    Tank tank = new Tank();
-
-    final int valuesSize = 9;
-    int values[][] = new int[valuesSize][valuesSize];
-
     private JTextField textField;
 
     public static void main(String[] args) {
@@ -41,13 +36,9 @@ public class Sudoku extends JFrame {
         int xBoxSize = xSize / xBoxes;
         int yBoxSize = ySize / yBoxes;
 
-        int cnt = 0;
-
-        generator();
-
         for (int j = 0; j < yBoxes; j++) {
             for (int i = 0; i < xBoxes; i++) {
-                boxes[i][j] = new Box(xEdge, yEdge, xBoxSize, yBoxSize, i, j, tank);
+                boxes[i][j] = new Box(xEdge, yEdge, xBoxSize, yBoxSize, i, j);
                 xEdge = xEdge + xBoxSize;
             }
             yEdge = yEdge + yBoxSize;
@@ -60,13 +51,6 @@ public class Sudoku extends JFrame {
             for (int i = 0; i < xBoxes; i++) {
                 boxes[i][j].draw(gr2d);
             }
-        }
-    }
-
-    private void generator() {
-        for (int i = 0; i < valuesSize; i++) {
-            //int newValue = tank.getValue();
-            //System.out.println(newValue);
         }
     }
 

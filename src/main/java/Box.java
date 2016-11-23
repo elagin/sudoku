@@ -6,7 +6,6 @@ import java.awt.*;
 public class Box {
 
     Graphics2D gr2d = null;
-    int[][] matrixA;
 
     int x = 0;
     int y = 0;
@@ -16,8 +15,6 @@ public class Box {
     final int xCells = 3;
     final int yCells = 3;
 
-    Integer number = 0;
-
     Cell[][] cells = null;
 
     int xEdge = 0;
@@ -26,9 +23,7 @@ public class Box {
     int xCellSize = 0;
     int yCellSize = 0;
 
-    public Box(int x, int y, int xSize, int ySize, int xBox, int yBox, Tank tank) {
-        matrixA = new int[3][3];
-
+    public Box(int x, int y, int xSize, int ySize, int xBox, int yBox) {
         cells = new Cell[xCells][yCells];
         this.x = x;
         this.y = y;
@@ -41,10 +36,11 @@ public class Box {
         xEdge = x;
         yEdge = y;
 
+        FreeLine line = new FreeLine();
         for (int j = 0; j < yCells; j++) {
             for (int i = 0; i < xCells; i++) {
-//                System.out.printf("[%d]x[%d] -", i, j);
-                cells[i][j] = new Cell(xEdge, yEdge, xCellSize, yCellSize, tank.getValue(i + xBox * 3, j + yBox * 3));
+                int newValue = line.getValue();
+                cells[i][j] = new Cell(xEdge, yEdge, xCellSize, yCellSize, newValue);
                 xEdge = xEdge + xCellSize;
             }
             yEdge = yEdge + yCellSize;
