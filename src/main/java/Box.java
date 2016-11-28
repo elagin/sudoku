@@ -23,7 +23,7 @@ public class Box {
     int xCellSize = 0;
     int yCellSize = 0;
 
-    public Box(int x, int y, int xSize, int ySize, int xBox, int yBox) {
+    public Box(int x, int y, int xSize, int ySize) {
         cells = new Cell[xCells][yCells];
         this.x = x;
         this.y = y;
@@ -35,8 +35,10 @@ public class Box {
 
         xEdge = x;
         yEdge = y;
+    }
 
-        FreeLine line = new FreeLine();
+    public void fillCells(FreeLine line) {
+        //FreeLine line = new FreeLine();
         for (int j = 0; j < yCells; j++) {
             for (int i = 0; i < xCells; i++) {
                 int newValue = line.getValue();
@@ -47,6 +49,23 @@ public class Box {
             xEdge = x;
         }
     }
+
+    public void fillCells(int y, FreeLine line) {
+        //System.out.printf("Create [%d] line\n", y);
+//        for (int j = 0; j < yCells; j++) {
+        System.out.printf("Line: %d\n", y);
+            for (int i = 0; i < xCells; i++) {
+                int newValue = line.getValue();
+                cells[i][y] = new Cell(xEdge, yEdge, xCellSize, yCellSize, newValue);
+                //System.out.printf("[%d] ", y);
+                xEdge = xEdge + xCellSize;
+            }
+            yEdge = yEdge + yCellSize;
+            xEdge = x;
+        System.out.printf("\n", y);
+  //      }
+    }
+
 
     public void draw(Graphics2D gr2d) {
         this.gr2d = gr2d;
@@ -64,5 +83,19 @@ public class Box {
                 cells[i][j].draw(gr2d);
             }
         }
+    }
+
+    public Integer [] getRowValues(int y){
+        System.out.printf("getRow %d Values:\n", y);
+        Integer [] res = new Integer[3];
+        for(int i = 0; i < 3; i++) {
+            Cell cell = cells[i][y];
+            if(cell != null) {
+                res[i] = cell.getValue();
+                System.out.printf("%d ", cell.getValue());
+            }
+        }
+        System.out.printf("\n");
+        return res;
     }
 }

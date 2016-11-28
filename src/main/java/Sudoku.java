@@ -36,9 +36,30 @@ public class Sudoku extends JFrame {
         int xBoxSize = xSize / xBoxes;
         int yBoxSize = ySize / yBoxes;
 
+        Box tmp = null;
+
         for (int j = 0; j < yBoxes; j++) {
             for (int i = 0; i < xBoxes; i++) {
-                boxes[i][j] = new Box(xEdge, yEdge, xBoxSize, yBoxSize, i, j);
+                Box box = new Box(xEdge, yEdge, xBoxSize, yBoxSize);
+                FreeLine line = new FreeLine();
+
+                if (i > 0) {
+                    tmp = boxes[i - 1][j];
+                }
+                if (tmp != null) {
+                    for (int row = 0; row < 3; row++) {
+                        Integer values[] = (tmp.getRowValues(row));
+                        line.deleteValues(values);
+                        box.fillCells(row, line);
+                    }
+                } else {
+                    for (int row = 0; row < 3; row++) {
+                        box.fillCells(row, line);
+                    }
+                }
+                //box.fillCells(line);
+                boxes[i][j] = box;
+
                 xEdge = xEdge + xBoxSize;
             }
             yEdge = yEdge + yBoxSize;
@@ -49,7 +70,13 @@ public class Sudoku extends JFrame {
     private void drawBoxes(Graphics2D gr2d) {
         for (int j = 0; j < yBoxes; j++) {
             for (int i = 0; i < xBoxes; i++) {
-                boxes[i][j].draw(gr2d);
+                try {
+                    Box box = boxes[i][j];
+                    if (box != null)
+                        box.draw(gr2d);
+                } catch (Exception ex) {
+                    System.out.printf("Exception [%s]\r", ex.toString());
+                }
             }
         }
     }
